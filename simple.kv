@@ -1,0 +1,72 @@
+#kivy 2.3.0
+
+<CLabel@Label>:
+    bgcolor: None
+    canvas.before:
+        Color:
+            rgb: 0.64, .43, 1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<ScrollableLabel>:
+    Label:
+        size_hint_y: None
+        height: self.texture_size[1]
+        text_size: self.width, None
+        text: root.text
+        markup: True
+
+<ServerBar>:
+    orientation: 'horizontal'
+    CLabel: 
+        text: 'NLIP Server'
+    TextInput:
+        hint_text: 'localhost'
+        id: server_input
+        font_size:'12sp'
+        multiline: False
+    CLabel: 
+        text: 'NLIP Port'
+    PortInput:
+        hint_text: '8000'
+        id: port_input
+        font_size:'12sp'
+        multiline: False
+
+
+<SimpleWidget>:       
+    orientation: 'vertical'
+    
+    ServerBar:
+        size_hint:(1,0.05)
+        id: top_bar
+    
+    ScrollableLabel:
+        text: '[b]Chat History[/b]'
+        markup: True
+        id: text_display
+        font_size:'12sp'
+        text_size: self.size
+        halign: "left"
+        valign: "top"
+        color: 0, 0, 0, 1
+        size_hint:(1,0.6)
+        canvas.before:
+            Color:
+                rgba: 0.7, 0.8, 1, 1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        
+
+    WrappedTextInput:
+        hint_text: 'Type your questions to the server'
+        id: text_input
+        font_size:'12sp'
+        multiline: True
+        background_color: (0.85, 0.85, 0.85, 1)
+        size_hint: (1, 0.35)
+        rootpar: root
+
+
